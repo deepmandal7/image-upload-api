@@ -11,8 +11,8 @@ import { streamToBuffer } from '@jorgeferrero/stream-to-buffer';
 
 @Injectable()
 export class AppService {
-  getHello(): string {
-    return 'Hello World!';
+  getHello() {
+    return { status: 'Hello World!' };
   }
 
   async getAllFile(): Promise<string[]> {
