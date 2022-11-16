@@ -9,7 +9,7 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { createReadStream } from 'fs';
+import { createReadStream, existsSync } from 'fs';
 import * as path from 'path';
 import { AppService } from './app.service';
 
@@ -25,15 +25,18 @@ export class AppController {
   @Post('file-upload')
   @UseInterceptors(FileInterceptor('image', { dest: './media/' }))
   uploadfile(@UploadedFiles() image, @Req() req) {
-    console.log(image);
     return req.file;
   }
 
   @Get('get-file')
   getFile(@Query('file_id') fileId, @Res() res) {
-    const file: any = createReadStream(
-      path.resolve(__dirname, `../media/${fileId}`),
-    );
-    file.pipe(res);
+    if (existsSync(path.resolve(__dirname, `../media/${fileId}`))) {
+      const file: any = createReadStream(
+        path.resolve(__dirname, `../media/${fileId}`),
+      );
+      file.pipe(res);
+    } else {
+      return { error: 'file not found!' };
+    }
   }
 }
