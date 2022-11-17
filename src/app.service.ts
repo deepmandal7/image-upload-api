@@ -1,13 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import {
-  createReadStream,
-  existsSync,
-  readFile,
-  writeFile,
-  readFileSync,
-} from 'fs';
+import { createReadStream, readFileSync } from 'fs';
 import * as path from 'path';
-import { streamToBuffer } from '@jorgeferrero/stream-to-buffer';
+import { stream2buffer } from './helper/streamtobuffer';
 
 @Injectable()
 export class AppService {
@@ -15,17 +9,15 @@ export class AppService {
     return { status: 'Hello World!' };
   }
 
-  async getAllFile(): Promise<string[]> {
-    const mediaArray: string[] = [];
+  async getAllFile() {
+    const mediaArray = [];
     let mediaJson = readFileSync(path.resolve(__dirname, `media.json`), 'utf8');
     for (const fileName of JSON.parse(mediaJson)) {
-      const data = await streamToBuffer(
+      const data = await stream2buffer(
         createReadStream(path.resolve(__dirname, `../media/${fileName}`)),
       );
-      mediaArray.push(data.toString());
+      mediaArray.push(data);
     }
-
-    console.log(mediaArray);
     return mediaArray;
   }
 }

@@ -2306,6 +2306,11 @@ file-entry-cache@^6.0.1:
   dependencies:
     flat-cache "^3.0.4"
 
+file-to-array-buffer@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/file-to-array-buffer/-/file-to-array-buffer-1.0.0.tgz#baf56edb2ce94f4bfac5158334f0835661d072f8"
+  integrity sha512-rcJKsia0uWadVOwR9Ov6r0HLClWs/ZESzayu/wQ+DjRuxw6tD5rv8u7p6LGG3bXMbC+IdWXye/xsY3GnOzj0fA==
+
 fill-range@^7.0.1:
   version "7.0.1"
   resolved "https://registry.yarnpkg.com/fill-range/-/fill-range-7.0.1.tgz#1919a6a7c75fe38b2c7c77e5198535da9acdda40"
