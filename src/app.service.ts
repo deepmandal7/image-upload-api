@@ -9,15 +9,15 @@ export class AppService {
     return { status: 'Hello World!' };
   }
 
-  async getAllFile() {
-    const mediaArray = [];
-    let mediaJson = readFileSync(path.resolve(__dirname, `media.json`), 'utf8');
-    for (const fileName of JSON.parse(mediaJson)) {
-      const data = await stream2buffer(
-        createReadStream(path.resolve(__dirname, `../media/${fileName}`)),
-      );
-      mediaArray.push(data);
-    }
-    return mediaArray;
-  }
+  // async getAllFile() {
+  //   const mediaArray = [];
+  //   let mediaJson = readFileSync(path.resolve(__dirname, `media.json`), 'utf8');
+  //   for (const fileName of JSON.parse(mediaJson)) {
+  //     const data = await stream2buffer(
+  //       createReadStream(path.resolve(__dirname, `../media/${fileName}`)),
+  //     );
+  //     mediaArray.push(data);
+  //   }
+  //   return mediaArray;
+  // }
 }
